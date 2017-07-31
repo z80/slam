@@ -5,7 +5,7 @@ IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE Release)
 ENDIF()
 
-set( CMAKE_INSTALL_PREFIX "./_app" )
+set( CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/_app" )
 
 add_subdirectory( "./Thirdparty" )
 
