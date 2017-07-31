@@ -100,11 +100,11 @@ add_custom_target(uninstall
 add_subdirectory("external")
 add_subdirectory("src")
 
-if(BUILD_TESTS)
+if(BUILD_TESTS AND False)
   add_subdirectory("test")
 endif()
 
-if(BUILD_EXAMPLES)
+if(BUILD_EXAMPLES AND False)
   set(Pangolin_DIR ${Pangolin_BINARY_DIR}/src)
   add_subdirectory(examples)
   add_subdirectory(tools)

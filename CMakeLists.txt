@@ -5,6 +5,8 @@ IF(NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE Release)
 ENDIF()
 
+set( CMAKE_INSTALL_PREFIX "./_app" )
+
 add_subdirectory( "./Thirdparty" )
 
 MESSAGE("Build type: " ${CMAKE_BUILD_TYPE})
@@ -117,4 +119,9 @@ target_link_libraries(mono_kitti ${PROJECT_NAME})
 add_executable(mono_euroc
 Examples/Monocular/mono_euroc.cc)
 target_link_libraries(mono_euroc ${PROJECT_NAME})
+
+
+install( TARGETS rgbd_tum stereo_kitti stereo_euroc mono_tum mono_kitti
+  mono_euroc DESTINATION "./" )
+
 
