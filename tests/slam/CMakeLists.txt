@@ -12,5 +12,5 @@ include_directories( "./include"
 
 add_executable( ${proj} ${src} )
 target_link_libraries( ${proj} ${PROJECT_NAME} ${OpenCV_LIBS} )
-
+install( TARGETS ${proj} DESTINATION "./" )
 

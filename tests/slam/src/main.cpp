@@ -36,7 +36,7 @@ int main(int argc, char **argv)
         SLAM.TrackMonocular( img, tframe );
 
         uchar key = (uchar)cv::waitKey( 0 );
-        if ( key == "q" )
+        if ( key == 'q' )
             break;
     }
 
