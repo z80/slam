@@ -3,6 +3,7 @@
 #include<algorithm>
 #include<fstream>
 #include<chrono>
+#include <map>
 
 #include<opencv2/core/core.hpp>
 #include<opencv2/imgproc.hpp>
@@ -14,6 +15,34 @@
 
 using namespace std;
 
+//std::map<void *, bool> allocations;
+//bool doRemember = true;
+
+void * operator new(std::size_t n) //throw(std::bad_alloc)
+{
+    void * p = malloc( n );
+    /*
+    if ( doRemember )
+    {
+        doRemember = false;
+            allocations[p] = true;
+        doRemember = true;
+    }
+    */
+    return p;
+}
+
+void operator delete(void * p) //throw()
+{
+    /*
+    std::map<void*, bool>::iterator it = allocations.find( p );
+    if ( it == allocations.end() )
+        std::cout << "ERROR: already deleted this piece of memory" << std::endl;
+    else
+        allocations.erase( it );
+    */
+    free( p );
+}
 
 
 int main(int argc, char **argv)
