@@ -35,9 +35,9 @@ int main(int argc, char **argv)
         double tframe = static_cast<double>(i++);
         SLAM.TrackMonocular( img, tframe );
 
-        uchar key = (uchar)cv::waitKey( 0 );
-        if ( key == 'q' )
-            break;
+        //int key = cv::waitKey( 1 );
+        //if ( key == 'q' )
+        //    break;
     }
 
     //im = cv::imread( vstrImageFilenames[ni],CV_LOAD_IMAGE_UNCHANGED );
