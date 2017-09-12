@@ -110,6 +110,7 @@ bool Vo::PD::trackOpticalFlow( const cv::Mat & imgA, std::vector<cv::Point2f> & 
     cv::calcOpticalFlowPyrLK( imgA, imgB, pointsA, pointsB, status, err,
                               wndSize, maxLevel, tc, cv::OPTFLOW_USE_INITIAL_FLOW, minThreshold );
 
+    /*
     // Remove points which are not tracked.
     int sz = static_cast<int>( status.size() );
     std::vector<cv::Point2f> resA, resB;
@@ -123,6 +124,7 @@ bool Vo::PD::trackOpticalFlow( const cv::Mat & imgA, std::vector<cv::Point2f> & 
     }
     pointsA = resA;
     pointsB = resB;
+    */
 
     return true;
 }
@@ -136,6 +138,7 @@ bool Vo::PD::computePoseDisplacement( std::vector<cv::Point2f> & pointsA,
     E = cv::findEssentialMat( pointsA, pointsB, cameraMatrix, cv::RANSAC, 0.999, 1.0, mask );
     int res = cv::recoverPose( E, pointsA, pointsB, cameraMatrix, r, t, status );
 
+    t       = this->R * t;
     this->R = this->R * r;
     //cv::Rodrigues( r, R );
 
@@ -155,10 +158,10 @@ bool Vo::PD::computePoseDisplacement( std::vector<cv::Point2f> & pointsA,
         this->x += t.at<double>( 0, 0 );
         this->y += t.at<double>( 1, 0 );
         this->z += t.at<double>( 2, 0 );
-        this->qw = 1.0; //w;
-        this->qx = 0.0; //x;
-        this->qy = 0.0; //y;
-        this->qz = 0.0; //z;
+        this->qw = w;
+        this->qx = x;
+        this->qy = y;
+        this->qz = z;
 
     return true;
 }
@@ -195,7 +198,7 @@ void Vo::PD::process()
     cv::Mat undistImage;
 
     this->R = cv::Mat::eye( 3, 3, CV_64F );
-    cv::Ptr<cv::ORB> detector = cv::ORB::create( 50 );
+    cv::Ptr<cv::ORB> detector = cv::ORB::create( 500 );
     //cv::Ptr<cv::Feature2D> detector = cv::FAST();
 
     do {

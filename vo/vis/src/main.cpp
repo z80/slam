@@ -117,10 +117,10 @@ static void posToIrr( const core::vector3df  & pos, core::vector3df  & res )
 
 static void quatToIrr( const core::quaternion & pos, core::quaternion & res )
 {
-    res.W =  pos.W;
-    res.X =  -pos.X;
-    res.Y =  -pos.Z;
-    res.Z =  -pos.Y;
+    res.W =   pos.W;
+    res.X =   pos.X;
+    res.Y =  -pos.Y;
+    res.Z =   pos.Z;
 }
 
 static void applyPose( Vo * fh, ISceneNode * fusedNode )
