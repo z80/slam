@@ -71,7 +71,7 @@ int main()
     fusedNode->setMaterialFlag(EMF_LIGHTING, false);
     fusedNode->setMaterialType(EMT_TRANSPARENT_ALPHA_CHANNEL);
     fusedNode->setMaterialTexture(0, driver->getTexture("cube.png"));
-    fusedNode->setScale(core::vector3df( 0.2f, 0.2f, 0.2f));
+    fusedNode->setScale(core::vector3df( 0.02f, 0.02f, 0.02f));
 
     // Create ref frame grid.
     LinesNode * linesNode = new LinesNode( smgr->getRootSceneNode(), smgr );
@@ -110,9 +110,9 @@ int main()
 
 static void posToIrr( const core::vector3df  & pos, core::vector3df  & res )
 {
-    res.X = pos.X;
-    res.Y = pos.Y;
-    res.Z = pos.Z;
+    res.X = -pos.X;
+    res.Y =  pos.Y;
+    res.Z = -pos.Z;
 }
 
 static void quatToIrr( const core::quaternion & pos, core::quaternion & res )

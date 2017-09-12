@@ -142,7 +142,7 @@ bool Vo::PD::computePoseDisplacement( std::vector<cv::Point2f> & pointsA,
     std::cout << "res: " << res << std::endl;
     //std::cout << t << std::endl;
 
-    if ( res < 10 )
+    if ( res < 20 )
         return false;
     // Convert rotation matrix to quaternion.
     double w  = std::sqrt( 1.0 + R.at<double>(0,0) + R.at<double>(1,1) + R.at<double>(2,2) ) / 2.0;
@@ -195,7 +195,7 @@ void Vo::PD::process()
     cv::Mat undistImage;
 
     this->R = cv::Mat::eye( 3, 3, CV_64F );
-    cv::Ptr<cv::ORB> detector = cv::ORB::create( 100 );
+    cv::Ptr<cv::ORB> detector = cv::ORB::create( 50 );
     //cv::Ptr<cv::Feature2D> detector = cv::FAST();
 
     do {
